@@ -53,6 +53,47 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700"
 		type="text/css" />
 	<script nomodule src="https://static.tildacdn.com/js/tilda-polyfill-1.0.min.js" charset="utf-8"></script>
+	
+	<style>
+		* {
+			cursor: none !important;
+		}
+		
+		.cursor {
+			position: fixed;
+			width: 8px;
+			height: 8px;
+			background-color: #fff;
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 9999;
+			mix-blend-mode: difference;
+			transition: transform 0.15s ease-out;
+			transform: translate(-50%, -50%);
+		}
+		
+		.cursor-follower {
+			position: fixed;
+			width: 32px;
+			height: 32px;
+			border: 2px solid rgba(255, 255, 255, 0.6);
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 9998;
+			mix-blend-mode: difference;
+			transition: all 0.25s ease-out;
+			transform: translate(-50%, -50%);
+		}
+		
+		.cursor.hover {
+			transform: translate(-50%, -50%) scale(3);
+		}
+		
+		.cursor-follower.hover {
+			transform: translate(-50%, -50%) scale(1.5);
+			border-color: rgba(255, 255, 255, 0.8);
+		}
+	</style>
 
 	<script type="text/javascript">
 		function t_onReady(func) {
@@ -1436,6 +1477,63 @@
 			--os-handle-perpendicular-size-active: 100%;
 		}
 	</style>
+	
+	<div class="cursor" id="cursor"></div>
+	<div class="cursor-follower" id="cursor-follower"></div>
+	
+	<script>
+		// Кастомный курсор как на silviasguotti.design
+		const cursor = document.getElementById('cursor');
+		const cursorFollower = document.getElementById('cursor-follower');
+		const hoverElements = 'a, button, .menu-item, .menu-grid, [onclick]';
+		
+		let mouseX = 0, mouseY = 0;
+		let followerX = 0, followerY = 0;
+		
+		document.addEventListener('mousemove', (e) => {
+			mouseX = e.clientX;
+			mouseY = e.clientY;
+			
+			cursor.style.left = mouseX + 'px';
+			cursor.style.top = mouseY + 'px';
+		});
+		
+		// Плавное следование для большого курсора
+		function animateFollower() {
+			const speed = 0.15;
+			
+			followerX += (mouseX - followerX) * speed;
+			followerY += (mouseY - followerY) * speed;
+			
+			cursorFollower.style.left = followerX + 'px';
+			cursorFollower.style.top = followerY + 'px';
+			
+			requestAnimationFrame(animateFollower);
+		}
+		animateFollower();
+		
+		document.addEventListener('mouseenter', () => {
+			cursor.style.display = 'block';
+			cursorFollower.style.display = 'block';
+		});
+		
+		document.addEventListener('mouseleave', () => {
+			cursor.style.display = 'none';
+			cursorFollower.style.display = 'none';
+		});
+		
+		// Эффект hover для интерактивных элементов
+		document.querySelectorAll(hoverElements).forEach(el => {
+			el.addEventListener('mouseenter', () => {
+				cursor.classList.add('hover');
+				cursorFollower.classList.add('hover');
+			});
+			el.addEventListener('mouseleave', () => {
+				cursor.classList.remove('hover');
+				cursorFollower.classList.remove('hover');
+			});
+		});
+	</script>
 </body>
 
 </html>
