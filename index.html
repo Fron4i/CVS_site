@@ -296,9 +296,15 @@
 				<style>
 					#recHeaderSpacer .t396__artboard {
 						height: 100px;
-						background-color: #000000;
+						background-color: transparent;
 						overflow: visible;
+						position: fixed;
+						top: 0;
+						left: 0;
+						width: 100%;
+						z-index: 999;
 					}
+
 
 					#recHeaderSpacer .t396__filter {
 						height: 100px;
@@ -314,7 +320,7 @@
 						text-align: CENTER;
 						z-index: 10;
 						top: 50px;
-						left: calc(50% - 58px + 0px);
+						left: calc(50% - 58px - 50px);
 						width: 116px;
 						height: auto;
 					}
@@ -329,6 +335,110 @@
 						background-position: center center;
 						border-color: transparent;
 						border-style: solid;
+					}
+
+					@media screen and (max-width: 1199px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-cvs'] .tn-atom {
+							font-size: 54px;
+						}
+					}
+
+					@media screen and (max-width: 959px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-cvs'] .tn-atom {
+							font-size: 48px;
+						}
+					}
+
+					@media screen and (max-width: 639px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-cvs'] {
+							left: calc(50% - 50px);
+							top: 50px;
+						}
+						
+						#recHeaderSpacer .tn-elem[data-elem-id='header-cvs'] .tn-atom {
+							font-size: 42px;
+						}
+					}
+
+					@media screen and (max-width: 479px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-cvs'] {
+							left: calc(50% - 45px);
+							top: 50px;
+						}
+						
+						#recHeaderSpacer .tn-elem[data-elem-id='header-cvs'] .tn-atom {
+							font-size: 36px;
+						}
+					}
+
+					#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] {
+						z-index: 11;
+						top: 56px;
+						right: 60px;
+						width: 44px;
+						height: 44px;
+						position: absolute;
+						cursor: pointer;
+					}
+
+					#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] .menu-grid {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: 1fr 1fr;
+						gap: 8px;
+						width: 100%;
+						height: 100%;
+					}
+
+					#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] .menu-dot {
+						background-color: #d9d9d9;
+						border-radius: 2px;
+						transition: all 0.3s ease;
+					}
+
+					#recHeaderSpacer .tn-elem[data-elem-id='header-menu']:hover .menu-dot {
+						background-color: #ffffff;
+						transform: scale(1.1);
+					}
+
+					@media screen and (max-width: 1199px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] {
+							right: 40px;
+							width: 40px;
+							height: 40px;
+							top: 44px;
+						}
+					}
+
+					@media screen and (max-width: 959px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] {
+							right: 30px;
+							width: 38px;
+							height: 38px;
+							top: 46px;
+						}
+					}
+
+					@media screen and (max-width: 639px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] {
+							right: 20px;
+							top: 50px;
+							width: 36px;
+							height: 36px;
+						}
+						
+						#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] .menu-grid {
+							gap: 6px;
+						}
+					}
+
+					@media screen and (max-width: 479px) {
+						#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] {
+							right: 15px;
+							top: 50px;
+							width: 34px;
+							height: 34px;
+						}
 					}
 				</style>
 				<div class="t396">
@@ -349,6 +459,21 @@
 							data-animate-mobile="y"
 						>
 							<div class="tn-atom">CVS</div>
+						</div>
+						<div
+							class="t396__elem tn-elem tn-elem__header-menu t-animate"
+							data-elem-id="header-menu"
+							data-elem-type="button"
+							data-animate-style="fadein"
+							data-animate-duration="2.8"
+							data-animate-mobile="y"
+						>
+							<div class="menu-grid">
+								<div class="menu-dot"></div>
+								<div class="menu-dot"></div>
+								<div class="menu-dot"></div>
+								<div class="menu-dot"></div>
+							</div>
 						</div>
 						<div
 							class="t396__carrier"
@@ -372,7 +497,7 @@
 				<!-- T396 -->
 				<style>
 					#rec777886289 .t396__artboard {
-						height: 701px;
+						height: 801px;
 						background-color: #000000;
 						overflow: visible;
 					}
@@ -391,11 +516,11 @@
 					}
 
 					#rec777886289 .t396__filter {
-						height: 701px;
+						height: 801px;
 					}
 
 					#rec777886289 .t396__carrier {
-						height: 701px;
+						height: 801px;
 						background-position: center center;
 						background-attachment: scroll;
 						background-size: cover;
@@ -464,10 +589,11 @@
 
 					#rec777886289 .tn-elem[data-elem-id='1711353096697'] {
 						z-index: 3;
-						top: 20px;
+						top: 70px;
 						left: calc(50% - 600px + 43px);
 						width: 1114px;
 						height: 476px;
+						margin-top: 50px;
 					}
 
 					#rec777886289 .tn-elem[data-elem-id='1711353096697'] .tn-atom {
@@ -516,10 +642,11 @@
 						color: #c5c6cb;
 						text-align: LEFT;
 						z-index: 4;
-						top: 377px;
+						top: 427px;
 						left: calc(50% - 600px + 1082px);
 						width: 175px;
 						height: auto;
+						margin-top: 50px;
 					}
 
 					#rec777886289 .tn-elem[data-elem-id='1711353096713'] .tn-atom {
@@ -779,16 +906,17 @@
 						color: #d9d9d9;
 						text-align: CENTER;
 						z-index: 9;
-						top: 478px;
-						left: calc(50% - 619px + 0px);
-						width: 1238px;
+						top: 528px;
+						left: calc(50% - 450px + 0px);
+						width: 900px;
 						height: auto;
+						margin-top: 50px;
 					}
 
 					#rec777886289 .tn-elem[data-elem-id='1711353096736'] .tn-atom {
 						vertical-align: middle;
 						color: #d9d9d9;
-						font-size: 42px;
+						font-size: 40px;
 						font-family: 'Akony', Arial, sans-serif;
 						line-height: 1.09;
 						font-weight: 700;
@@ -1223,8 +1351,8 @@
 							data-field-heightunits-value="px"
 							data-field-widthunits-value="px"
 							data-animate-style="fadeinup"
-							data-animate-duration="2.8"
-							data-animate-delay="0.2"
+							data-animate-duration="1.5"
+							data-animate-delay="0.1"
 							data-animate-distance="150"
 							data-animate-mobile="y"
 							data-field-textfit-value="autoheight"
@@ -1266,8 +1394,8 @@
 							data-field-heightunits-value="px"
 							data-field-widthunits-value="px"
 							data-animate-style="fadeinup"
-							data-animate-duration="2.8"
-							data-animate-delay="0.2"
+							data-animate-duration="1.5"
+							data-animate-delay="0.1"
 							data-animate-distance="150"
 							data-animate-mobile="y"
 							data-field-textfit-value="autoheight"
@@ -1481,6 +1609,10 @@
 		</script>
 
 		<style>
+			.t-body {
+				background-color: #000000;
+			}
+			
 			.os-scrollbar {
 				--os-size: 10px;
 				--os-padding-perpendicular: 2px;
