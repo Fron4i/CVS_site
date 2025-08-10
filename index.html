@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-lg-smooth>
 
 <head>
 	<meta charset="utf-8" />
@@ -36,6 +36,27 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" />
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&subset=latin,cyrillic"
 		rel="stylesheet" />
+
+	<!-- Akony Font -->
+	<style>
+		@font-face {
+			font-family: 'Akony';
+			src: url('https://static.tildacdn.com/fonts/akony.woff2') format('woff2'),
+				url('https://static.tildacdn.com/fonts/akony.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+			font-display: swap;
+		}
+
+		@font-face {
+			font-family: 'Akony';
+			src: url('https://static.tildacdn.com/fonts/akony-bold.woff2') format('woff2'),
+				url('https://static.tildacdn.com/fonts/akony-bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-display: swap;
+		}
+	</style>
 	<link rel="stylesheet" href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" type="text/css" media="print"
 		onload="this.media='all';" onerror="this.loaderr='y';" />
 	<noscript>
@@ -43,6 +64,205 @@
 	</noscript>
 	<link rel="stylesheet" href="https://static.tildacdn.com/css/tilda-animation-2.0.min.css" type="text/css" media="all"
 		onerror="this.loaderr='y';" />
+
+	<!-- 247Artists Styles -->
+	<style>
+		/* Отладочная информация */
+		.debug-panel {
+			position: fixed;
+			top: 20px;
+			right: 20px;
+			background: rgba(0, 0, 0, 0.9);
+			color: white;
+			padding: 20px;
+			border-radius: 8px;
+			font-family: monospace;
+			font-size: 12px;
+			z-index: 10000;
+			min-width: 250px;
+		}
+
+		.debug-panel h3 {
+			margin: 0 0 10px 0;
+			color: #4CAF50;
+		}
+
+		.debug-row {
+			margin: 5px 0;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.debug-value {
+			color: #FFE082;
+			font-weight: bold;
+		}
+
+		/* Простые секции для тестирования */
+		.test-section {
+			height: 100vh;
+			background: #111;
+			color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
+			text-align: center;
+		}
+
+		.test-section:nth-child(odd) {
+			background: #222;
+		}
+
+		/* STRUKTURA SCROLLBAR - ТОЧНАЯ КОПИЯ */
+		.os-scrollbar.os-theme-dark {
+			--os-size: 10px;
+			--os-handle-min-size: 33px;
+			--os-handle-border-radius: 8px;
+			--os-track-bg: linear-gradient(#000 52%, #000 52%);
+			--os-handle-bg: linear-gradient(#ffffff 44%, #ffffff 44%);
+			--os-handle-bg-hover: linear-gradient(#989797 0%, #989797 100%);
+		}
+	</style>
+
+	<!-- 247Artists CSS Links -->
+	<link rel='stylesheet' href='https://247artists.com/wp-content/themes/creatorspc/static/fonts/gellix.css?ver=1.0.0'
+		media='all' />
+	<link rel='stylesheet' href='https://247artists.com/wp-content/themes/creatorspc/build/css/main.css?ver=978450393'
+		media='all' />
+	<link rel='stylesheet'
+		href='https://247artists.com/wp-content/themes/creatorspc/build/css/components/s-message-home.css?ver=978450393'
+		media='all' />
+	<link rel='stylesheet'
+		href='https://247artists.com/wp-content/themes/creatorspc/build/css/layouts/front-page.css?ver=978450393'
+		media='all' />
+
+	<!-- CVS Scroll Animations - 247Artists Libraries -->
+	<script src="https://247artists.com/wp-content/themes/creatorspc/build/js/npm-gsap.js?ver=978450393"></script>
+	<script src="https://247artists.com/wp-content/themes/creatorspc/build/js/npm-luge.js?ver=978450393"></script>
+
+	<!-- CVS Scroll Animations Styles -->
+	<style>
+		/* CVS Scroll Animation Block - 247Artists Style */
+		.s-message-home {
+			position: relative;
+			height: 600vh;
+			/* Высота для всех сцен */
+			margin: 0;
+			clip-path: inset(0);
+		}
+
+		.s-message-home .s__inner {
+			position: sticky;
+			top: 0;
+			width: 100%;
+			height: 100vh;
+			background: #000;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+
+		/* Сообщения (сцены) */
+		.s__message {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			opacity: 1 !important;
+		}
+
+		/* Показываем первое сообщение по умолчанию */
+		.s__message--1 {
+			opacity: 1 !important;
+		}
+
+		/* Временно показываем все сообщения для отладки */
+		.s__message--2 {
+			opacity: 0.5 !important;
+			transform: translateY(50px);
+		}
+
+		/* Стили текста - AKONY как у логотипа CVS */
+		.s__message__text {
+			color: #d9d9d9;
+			font-family: 'Akony', Arial, sans-serif !important;
+			font-weight: 700;
+			line-height: 1.09;
+			letter-spacing: -0.06em;
+			margin-bottom: 1rem;
+		}
+
+		.s__message__text--big {
+			font-size: clamp(3rem, 8vw, 8rem);
+		}
+
+		.s__message__text--small {
+			font-style: italic;
+			font-size: clamp(2rem, 5vw, 5rem);
+			font-weight: normal;
+			margin-top: 2rem;
+		}
+
+		.s__message__text--large {
+			font-size: clamp(6rem, 20vw, 20rem);
+			font-weight: 800;
+		}
+
+		.s__message__text--glow {
+			text-shadow: 0 0 20px rgba(217, 217, 217, 0.5);
+		}
+
+		/* Контейнер слов */
+		.words-container .s__message__text {
+			display: block;
+			margin-bottom: 1rem;
+		}
+
+		/* Печатная машинка */
+		.typewriter-container {
+			overflow: hidden;
+			width: fit-content;
+		}
+
+		.typewriter-text {
+			border-right: 3px solid rgba(217, 217, 217, 0.8);
+			white-space: nowrap;
+			overflow: hidden;
+			width: 0;
+		}
+
+		/* Черный экран */
+		.black-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			z-index: 1000;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		/* Мобильная адаптация */
+		@media only screen and (max-width: 768px) {
+			.s__message__text--big {
+				font-size: clamp(2rem, 12vw, 6rem);
+			}
+
+			.s__message__text--large {
+				font-size: clamp(4rem, 25vw, 12rem);
+			}
+		}
+	</style>
 	<link rel="stylesheet" href="https://static.tildacdn.com/css/tilda-slds-1.4.min.css" type="text/css" media="print"
 		onload="this.media='all';" onerror="this.loaderr='y';" />
 	<noscript>
@@ -53,12 +273,12 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700"
 		type="text/css" />
 	<script nomodule src="https://static.tildacdn.com/js/tilda-polyfill-1.0.min.js" charset="utf-8"></script>
-	
+
 	<style>
 		* {
 			cursor: none !important;
 		}
-		
+
 		.cursor {
 			position: fixed;
 			width: 8px;
@@ -71,7 +291,7 @@
 			transition: transform 0.15s ease-out;
 			transform: translate(-50%, -50%);
 		}
-		
+
 		.cursor-follower {
 			position: fixed;
 			width: 32px;
@@ -84,11 +304,11 @@
 			transition: all 0.25s ease-out;
 			transform: translate(-50%, -50%);
 		}
-		
+
 		.cursor.hover {
 			transform: translate(-50%, -50%) scale(3);
 		}
-		
+
 		.cursor-follower.hover {
 			transform: translate(-50%, -50%) scale(1.5);
 			border-color: rgba(255, 255, 255, 0.8);
@@ -330,7 +550,7 @@
 				#recHeaderSpacer .tn-elem[data-elem-id='header-menu'] {
 					z-index: 11;
 					top: 51px;
-					right: 60px;
+					right: 92px;
 					width: 54px;
 					height: 54px;
 					position: absolute;
@@ -1294,6 +1514,27 @@
 						</div>
 					</div>
 
+					<!-- Scroll Down Indicator - ТОЧНО КАК ПОПРОБОВАВ ОДНАЖДЫ -->
+					<div class="t396__elem tn-elem tn-elem__7778862891711353096999 t-animate scroll-indicator" 
+						data-elem-id="scroll-down-arrow" data-elem-type="text" 
+						data-field-top-value="567" data-field-left-value="calc(50% - 15px)" data-field-height-value="40" 
+						data-field-width-value="30" data-field-axisy-value="top" data-field-axisx-value="left"
+						data-field-container-value="grid" data-field-topunits-value="px" 
+						data-field-leftunits-value="" data-field-heightunits-value="px" 
+						data-field-widthunits-value="px" data-animate-style="fadeinup"
+						data-animate-duration="1.5" data-animate-delay="2.5" data-animate-distance="150" 
+						data-animate-mobile="y" data-field-textfit-value="autoheight">
+						<div class="tn-atom" field="scroll_down_indicator">
+							<div class="scroll-mouse">
+								<div class="mouse-icon">
+									<div class="mouse-body">
+										<div class="mouse-scroll"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<style>
 						/* Стили для бокового текста */
 						.tn-elem[data-elem-id='1711353096713'] {
@@ -1310,7 +1551,194 @@
 							white-space: nowrap;
 							letter-spacing: 0.5px;
 						}
+
+						/* SCROLL DOWN INDICATOR */
+						.scroll-indicator {
+							position: absolute !important;
+							z-index: 15 !important;
+							animation: fadeInUp 1s ease-out 2s both;
+							text-align: center !important;
+						}
+						
+						/* SCROLL INDICATOR - ПОЛНОЕ ПЕРЕБИТИЕ INLINE СТИЛЕЙ */
+						#rec777886289 .tn-elem[data-elem-id='scroll-down-arrow'] {
+							color: #d9d9d9 !important;
+							text-align: CENTER !important;
+							z-index: 15 !important;
+							zoom: 1.5 !important;
+							top: 814px !important;
+							left: calc(50% + 7px) !important;
+							width: 30px !important;
+							height: 40px !important;
+							display: flex !important;
+							justify-content: center !important;
+							align-items: center !important;
+							opacity: 0;
+							animation: scroll-indicator-appear 0.8s ease-out 2.9s forwards;
+						}
+
+						#rec777886289 .tn-elem[data-elem-id='scroll-down-arrow'] .tn-atom {
+							display: flex !important;
+							justify-content: center !important;
+							align-items: center !important;
+							width: 100% !important;
+							height: 100% !important;
+						}
+
+						.scroll-mouse {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							cursor: pointer;
+							transition: all 0.3s ease;
+							width: 30px;
+							height: 40px;
+						}
+
+						.scroll-mouse:hover {
+							transform: translateY(-8px);
+						}
+
+						.scroll-mouse:hover .mouse-body {
+							box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+							border-color: #FFD700;
+						}
+
+						.scroll-mouse:hover .mouse-scroll {
+							background-color: #FFD700;
+							box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+						}
+
+						.mouse-icon {
+							position: relative;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						}
+
+						.mouse-body {
+							width: 20px;
+							height: 32px;
+							border: 2px solid #ffffff;
+							border-radius: 12px;
+							position: relative;
+							background: transparent;
+							transition: all 0.3s ease;
+							box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+						}
+
+						.mouse-scroll {
+							width: 3px;
+							height: 6px;
+							background-color: #ffffff;
+							border-radius: 2px;
+							position: absolute;
+							top: 6px;
+							left: 50%;
+							transform: translateX(-50%);
+							animation: scroll-animation 2s infinite;
+							transition: all 0.3s ease;
+						}
+
+						@keyframes scroll-animation {
+							0% {
+								transform: translateX(-50%) translateY(0);
+								opacity: 1;
+							}
+							50% {
+								transform: translateX(-50%) translateY(12px);
+								opacity: 0.7;
+							}
+							100% {
+								transform: translateX(-50%) translateY(0);
+								opacity: 1;
+							}
+						}
+
+						@keyframes scroll-indicator-appear {
+							0% {
+								opacity: 0;
+								transform: translateY(20px);
+							}
+							100% {
+								opacity: 1;
+								transform: translateY(0);
+							}
+						}
+
+						@keyframes fadeInUp {
+							0% {
+								opacity: 0;
+								transform: translateX(-50%) translateY(30px);
+							}
+
+							100% {
+								opacity: 1;
+								transform: translateX(-50%) translateY(0);
+							}
+						}
+
+						/* Скрыть индикатор после скролла */
+						.scroll-indicator.hidden {
+							animation: fadeOutDown 0.5s ease-out forwards;
+						}
+
+						@keyframes fadeOutDown {
+							0% {
+								opacity: 1;
+								transform: translateX(-50%) translateY(0);
+							}
+
+							100% {
+								opacity: 0;
+								transform: translateX(-50%) translateY(30px);
+							}
+						}
 					</style>
+					
+					<!-- JavaScript для scroll indicator -->
+					<script>
+						// Функция прокрутки до начала анимации
+						function scrollToAnimation() {
+							const animationBlock = document.getElementById('message');
+							if (animationBlock) {
+								const targetPosition = animationBlock.getBoundingClientRect().top + window.pageYOffset - 100;
+								window.scrollTo({
+									top: targetPosition,
+									behavior: 'smooth'
+								});
+							}
+						}
+
+						// Добавляем обработчик клика на scroll indicator
+						document.addEventListener('DOMContentLoaded', function() {
+							const scrollMouse = document.querySelector('.scroll-mouse');
+							if (scrollMouse) {
+								scrollMouse.addEventListener('click', function(e) {
+									e.preventDefault();
+									e.stopPropagation();
+									scrollToAnimation();
+								});
+							}
+
+							// Автоматическая прокрутка при первом скролле
+							let hasAutoScrolled = false;
+							let scrollTimeout;
+							
+							window.addEventListener('scroll', function() {
+								if (!hasAutoScrolled) {
+									// Проверяем если пользователь начал скроллить
+									if (window.pageYOffset > 50) {
+										clearTimeout(scrollTimeout);
+										scrollTimeout = setTimeout(function() {
+											hasAutoScrolled = true;
+											scrollToAnimation();
+										}, 300); // Небольшая задержка чтобы дождаться остановки скролла
+									}
+								}
+							});
+						});
+					</script>
 				</div>
 			</div>
 			<script>
@@ -1326,8 +1754,197 @@
 			<!-- /T396 -->
 		</div>
 
+		<!-- 247Artists Full Container -->
+		<div class="site-container">
+
+
+
+			<!-- ТОЧНАЯ КОПИЯ ИХ БЛОКА s-message-home -->
+			<div class="s-message-home" data-plr-component="s-message-home" id="message">
+				<div class="s__inner">
+
+					<div class="s__message s__message--1 t-title js-message-1">
+						<div class="s__message__text s__message__text--big s__message__text--1 js-sentence-1-text-1">
+							Пути назад не будет
+						</div>
+						<div class="s__message__text s__message__text--big s__message__text--2 js-sentence-1-text-2">
+
+						</div>
+
+						<div class="s__message__text s__message__text--small s__message__text--3 js-sentence-2">
+							это не угроза, это факт
+						</div>
+					</div>
+
+					<div class="s__message s__message--2 t-title js-message-2">
+						<div class="s__message__text s__message__text--small s__message__text--1 js-sentence-3-text-1">
+							It doesn't
+						</div>
+						<div class="s__message__text s__message__text--small s__message__text--2 js-sentence-3-text-2">
+							have to be...
+						</div>
+						<div class="s__message__text s__message__text--2 s__message__text--3 js-sentence-3-text-2">
+							have to be...
+						</div>
+						<div
+							class="s__message__text s__message__text--1 s__message__text--small s__message__text--4 js-sentence-3-text-2">
+							have to be...
+						</div>
+					</div>
+
+					<canvas class="s__canvas js-canvas"></canvas>
+				</div>
+			</div>
+
+			<div class="test-section">
+				<div>
+					<h1>✨ Animation Complete!</h1>
+					<p>The scroll hijacking worked if you saw the messages above.</p>
+				</div>
+			</div>
+
+			<div class="s-message-home" data-plr-component="s-message-home" id="message2">
+				<div class="s__inner">
+
+					<div class="s__message s__message--1 t-title js-message-1">
+						<div class="s__message__text s__message__text--big s__message__text--1 js-sentence-1-text-1">
+							The Music Business
+						</div>
+						<div class="s__message__text s__message__text--big s__message__text--2 js-sentence-1-text-2">
+							can be hard.
+						</div>
+
+						<div class="s__message__text s__message__text--small s__message__text--3 js-sentence-2">
+							Making money with music is hard and comes with complex tasks...
+						</div>
+					</div>
+
+					<div class="s__message s__message--2 t-title js-message-2">
+						<div class="s__message__text s__message__text--big s__message__text--1 js-sentence-3-text-1">
+							It doesn't
+						</div>
+						<div class="s__message__text s__message__text--big s__message__text--2 js-sentence-3-text-2">
+							have to be...
+						</div>
+					</div>
+
+					<canvas class="s__canvas js-canvas"></canvas>
+				</div>
+			</div>
+
+			<!-- Тестовая секция после блока -->
+			<div class="test-section">
+				<div>
+					<h1>✨ Animation Complete!</h1>
+					<p>The scroll hijacking worked if you saw the messages above.</p>
+				</div>
+			</div>
+
+		</div>
+
+
 		<!--/allrecords-->
 	</div>
+
+	<!-- 247Artists GSAP & Luge Scripts -->
+	<script src="https://247artists.com/wp-content/themes/creatorspc/build/js/npm-gsap.js?ver=978450393"></script>
+	<script src="https://247artists.com/wp-content/themes/creatorspc/build/js/npm-luge.js?ver=978450393"></script>
+
+	<!-- 247Artists Config -->
+	<script>
+		window.plr = {
+			"tpl_dir": "https://247artists.com/wp-content/themes/creatorspc",
+			"bundles": {
+				"components": {
+					"s-message-home": { "js": true, "css": true },
+				},
+				"layouts": {
+					"front-page": []
+				}
+			},
+			"version": "978450393"
+		};
+	</script>
+
+	<script src="https://247artists.com/wp-content/themes/creatorspc/build/js/main.js?ver=978450393"></script>
+
+	<!-- Debug Script -->
+	<script>
+		// Debug функции
+		function updateDebug() {
+			console.log('GSAP:', typeof gsap !== 'undefined' ? '✅' : '❌')
+			console.log('Luge:', typeof luge !== 'undefined' ? '✅' : '❌')
+
+			const messageBlock = document.getElementById('message')
+			console.log('Message Block:', messageBlock ? '✅' : '❌')
+
+			// Проверяем видимость текста
+			const messages = document.querySelectorAll('.s__message')
+			const texts = document.querySelectorAll('.s__message__text')
+			console.log('Total messages:', messages.length)
+			console.log('Total texts:', texts.length)
+
+			texts.forEach((text, i) => {
+				const styles = window.getComputedStyle(text)
+				console.log(`Text ${i}: opacity=${styles.opacity}, display=${styles.display}, visibility=${styles.visibility}`)
+			})
+		}
+
+		// Обновляем отладку каждые 2 секунды
+		setInterval(() => {
+			updateDebug()
+
+			if (typeof luge !== 'undefined' && luge.ticker && luge.ticker.smooth) {
+				const currentY = Math.round(luge.ticker.smooth.current.y || 0)
+				console.log('Current Y:', currentY + 'px')
+
+				// Вычисляем прогресс
+				const messageBlock = document.getElementById('message')
+				if (messageBlock) {
+					const rect = messageBlock.getBoundingClientRect()
+					const progress = Math.max(0, Math.min(100, (-rect.top / (rect.height - window.innerHeight)) * 100))
+					console.log('Scroll Progress:', Math.round(progress) + '%')
+				}
+			}
+
+			// Проверяем активное сообщение
+			const messages = document.querySelectorAll('.s__message')
+			let activeMsg = '-'
+			messages.forEach((msg, i) => {
+				const opacity = window.getComputedStyle(msg).opacity
+				if (parseFloat(opacity) > 0.5) {
+					activeMsg = i + 1
+				}
+			})
+			console.log('Active Message:', activeMsg)
+		}, 2000)
+
+		// Логи в консоль
+		console.log('🎵 247Artists Integration Started')
+
+		// Ждем загрузки и инициализируем
+		document.addEventListener('DOMContentLoaded', () => {
+			console.log('📄 DOM loaded')
+			updateDebug()
+		})
+
+		// Логируем когда библиотеки загружаются
+		window.addEventListener('load', () => {
+			console.log('🚀 Page fully loaded')
+			updateDebug()
+
+			setTimeout(() => {
+				console.log('🔄 Libraries check after 1s:')
+				console.log('- Luge:', typeof luge !== 'undefined' ? '✅' : '❌')
+				console.log('- GSAP:', typeof gsap !== 'undefined' ? '✅' : '❌')
+
+				if (typeof luge !== 'undefined') {
+					console.log('- Luge ticker:', luge.ticker ? '✅' : '❌')
+					console.log('- Luge smooth:', luge.ticker?.smooth ? '✅' : '❌')
+				}
+			}, 1000)
+		});
+	</script>
 
 	<script src="https://static.tildacdn.com/js/jquery-1.10.2.min.js" charset="utf-8"
 		onerror="this.loaderr='y';"></script>
@@ -1360,6 +1977,33 @@
 		onerror="this.loaderr='y';"></script>
 	<script src="https://static.tildacdn.com/js/tilda-zero-1.1.min.js" charset="utf-8" async
 		onerror="this.loaderr='y';"></script>
+
+	<!-- OverlayScrollbars Library -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.1/browser/overlayscrollbars.browser.es6.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.1/styles/overlayscrollbars.min.css" />
+
+	<!-- STRUKTURA SCROLLBAR INIT -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// Ждем загрузки OverlayScrollbars
+			if (typeof OverlayScrollbarsGlobal !== 'undefined') {
+				let { OverlayScrollbars, ScrollbarsHidingPlugin, SizeObserverPlugin, ClickScrollPlugin } = OverlayScrollbarsGlobal
+				OverlayScrollbars.plugin(ClickScrollPlugin)
+
+				window.sb = OverlayScrollbars(document.body, {
+					scrollbars: {
+						autoHide: "never",
+						clickScroll: true
+					}
+				})
+
+				console.log('✅ STRUKTURA Scrollbar initialized')
+			} else {
+				console.warn('❌ OverlayScrollbars not loaded')
+			}
+		});
+	</script>
 	<script type="text/javascript">
 		window.dataLayer = window.dataLayer || []
 	</script>
@@ -1421,118 +2065,80 @@
 				)
 			}
 		})
+
+		// Scroll Down Indicator Logic
+		document.addEventListener('DOMContentLoaded', function () {
+			const scrollIndicator = document.querySelector('.scroll-indicator')
+
+			// Клик по индикатору - плавный скролл к 247Artists блоку
+			if (scrollIndicator) {
+				scrollIndicator.addEventListener('click', function () {
+					const targetBlock = document.querySelector('.s-message-home')
+					if (targetBlock) {
+						targetBlock.scrollIntoView({
+							behavior: 'smooth'
+						})
+					} else {
+						// Fallback - скролл на высоту экрана
+						window.scrollTo({
+							top: window.innerHeight,
+							behavior: 'smooth'
+						})
+					}
+				})
+			}
+
+			// Индикатор остается видимым всегда
+			console.log('✅ Scroll indicator initialized (permanent)')
+		})
 	</script>
 
+	<!-- Кастомный курсор -->
+	<div class="cursor"></div>
+	<div class="cursor-follower"></div>
 
-	<!-- Скрипт для скроллбара -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.2.0/browser/overlayscrollbars.browser.es6.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.2.0/styles/overlayscrollbars.min.css" />
 	<script>
-			; (function () {
-				let isMobile =
-					/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-						navigator.userAgent
-					)
-				if (!isMobile) {
-					let { OverlayScrollbars } = OverlayScrollbarsGlobal
-					window.sb = OverlayScrollbars(document.body, {
-						scrollbars: {
-							theme: 'os-theme-dark',
-							autoHide: 'never',
-						},
-					})
-				}
-			})()
-	</script>
+		// Кастомный курсор
+		const cursor = document.querySelector('.cursor')
+		const cursorFollower = document.querySelector('.cursor-follower')
 
-	<style>
-		.t-body {
-			background-color: #000000;
-		}
+		let mouseX = 0, mouseY = 0
+		let followerX = 0, followerY = 0
 
-		.os-scrollbar {
-			--os-size: 10px;
-			--os-padding-perpendicular: 2px;
-			--os-padding-axis: 2px;
-			--os-track-border-radius: 0;
-			--os-track-bg: #000000;
-			--os-track-bg-hover: #000000;
-			--os-track-bg-active: #000000;
-			--os-track-border: none;
-			--os-track-border-hover: none;
-			--os-track-border-active: none;
-			--os-handle-border-radius: 10px;
-			--os-handle-bg: #ffffff;
-			--os-handle-bg-hover: #989797;
-			--os-handle-bg-active: #989797;
-			--os-handle-border: none;
-			--os-handle-border-hover: none;
-			--os-handle-border-active: none;
-			--os-handle-min-size: 33px;
-			--os-handle-max-size: none;
-			--os-handle-perpendicular-size: 100%;
-			--os-handle-perpendicular-size-hover: 100%;
-			--os-handle-perpendicular-size-active: 100%;
-		}
-	</style>
-	
-	<div class="cursor" id="cursor"></div>
-	<div class="cursor-follower" id="cursor-follower"></div>
-	
-	<script>
-		// Кастомный курсор как на silviasguotti.design
-		const cursor = document.getElementById('cursor');
-		const cursorFollower = document.getElementById('cursor-follower');
-		const hoverElements = 'a, button, .menu-item, .menu-grid, [onclick]';
-		
-		let mouseX = 0, mouseY = 0;
-		let followerX = 0, followerY = 0;
-		
 		document.addEventListener('mousemove', (e) => {
-			mouseX = e.clientX;
-			mouseY = e.clientY;
-			
-			cursor.style.left = mouseX + 'px';
-			cursor.style.top = mouseY + 'px';
-		});
-		
-		// Плавное следование для большого курсора
+			mouseX = e.clientX
+			mouseY = e.clientY
+
+			cursor.style.left = mouseX + 'px'
+			cursor.style.top = mouseY + 'px'
+		})
+
 		function animateFollower() {
-			const speed = 0.15;
-			
-			followerX += (mouseX - followerX) * speed;
-			followerY += (mouseY - followerY) * speed;
-			
-			cursorFollower.style.left = followerX + 'px';
-			cursorFollower.style.top = followerY + 'px';
-			
-			requestAnimationFrame(animateFollower);
+			followerX += (mouseX - followerX) * 0.1
+			followerY += (mouseY - followerY) * 0.1
+
+			cursorFollower.style.left = followerX + 'px'
+			cursorFollower.style.top = followerY + 'px'
+
+			requestAnimationFrame(animateFollower)
 		}
-		animateFollower();
-		
-		document.addEventListener('mouseenter', () => {
-			cursor.style.display = 'block';
-			cursorFollower.style.display = 'block';
-		});
-		
-		document.addEventListener('mouseleave', () => {
-			cursor.style.display = 'none';
-			cursorFollower.style.display = 'none';
-		});
-		
-		// Эффект hover для интерактивных элементов
-		document.querySelectorAll(hoverElements).forEach(el => {
-			el.addEventListener('mouseenter', () => {
-				cursor.classList.add('hover');
-				cursorFollower.classList.add('hover');
-			});
-			el.addEventListener('mouseleave', () => {
-				cursor.classList.remove('hover');
-				cursorFollower.classList.remove('hover');
-			});
-		});
+
+		animateFollower()
+
+		// Hover эффекты
+		const hoverElements = document.querySelectorAll('a, button, [onclick], .menu-item, [data-elem-id="header-menu"]')
+
+		hoverElements.forEach(element => {
+			element.addEventListener('mouseenter', () => {
+				cursor.classList.add('hover')
+				cursorFollower.classList.add('hover')
+			})
+
+			element.addEventListener('mouseleave', () => {
+				cursor.classList.remove('hover')
+				cursorFollower.classList.remove('hover')
+			})
+		})
 	</script>
 </body>
 
